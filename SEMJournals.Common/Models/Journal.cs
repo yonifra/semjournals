@@ -1,12 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SEMJournals.Common.Interfaces;
 
 namespace SEMJournals.Common.Models
 {
-    class Journal
+    public class Journal : IJournal
     {
+        private string _journalPath;
+        private int _id;
+        private int _authorId;
+        private string _journalName;
+        private DateTime _publishTime;
+
+        public string GetJournalPath()
+        {
+            return _journalPath;
+        }
+
+        public int GetJournalId()
+        {
+            return _id;
+        }
+
+        public int GetAuthorId()
+        {
+            return _authorId;
+        }
+
+        public string GetJournalName()
+        {
+            return _journalName;
+        }
     }
 }
