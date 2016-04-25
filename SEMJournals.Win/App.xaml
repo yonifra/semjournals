@@ -1,8 +1,16 @@
 ﻿<Application x:Class="SEMJournals.Win.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:SEMJournals.Win.ViewModels"
+             xmlns:views="clr-namespace:SEMJournals.Win.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+            <views:LoginControl />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:SemViewerViewModel}">
+            <views:SemDocsControl />
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -1,8 +1,12 @@
 ﻿<Window x:Class="SEMJournals.Win.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        xmlns:views="clr-namespace:SEMJournals.Win.Views"
+        xmlns:viewModels="clr-namespace:SEMJournals.Win.ViewModels"
+        Title="SEM Journals Windows Client" Height="350" Width="525">
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+    
+    <ContentControl Content="{Binding SelectedPage}" />
 </Window>
