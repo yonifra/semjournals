@@ -155,7 +155,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SEMJournals.Common\SEMJournals.Common.csproj">
+      <Project>{16d2a25c-561b-42c9-adec-9668edda7100}</Project>
+      <Name>SEMJournals.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SEMJournals.Server\SEMJournals.Server.csproj">
+      <Project>{5a351af6-a704-4f53-98af-3acda5b2d179}</Project>
+      <Name>SEMJournals.Server</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Select.Pdf.16.2.0.0\build\Select.Pdf.targets" Condition="Exists('..\packages\Select.Pdf.16.2.0.0\build\Select.Pdf.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
