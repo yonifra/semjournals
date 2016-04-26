@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SEMJournals.Common.Models;
+using SEMJournals.Server;
 
 namespace SEMJournals.Win.ViewModels
 {
@@ -12,6 +13,7 @@ namespace SEMJournals.Win.ViewModels
         private RelayCommand _loginCommand;
         private readonly MainViewModel _mainVm;
         private RelayCommand _signUpCommand;
+        private bool _isPublisher;
 
         public LoginViewModel(MainViewModel mainVm)
         {
@@ -45,9 +47,26 @@ namespace SEMJournals.Win.ViewModels
 
         private void SignUp()
         {
+            var userType = IsPublisher ? UserType.Publisher : UserType.User;
+
             var result = AuthenticationManager.Instance.AddUser(Username, Password);
 
+            if (result)
+            {
+                UsersManager.AddUser(Username, userType);
+            }
+
             MessageBox.Show(result ? "Signed up!" : "Error signing up");
+        }
+
+        public bool IsPublisher
+        {
+            get { return _isPublisher; }
+            set
+            {
+                _isPublisher = value;
+                RaisePropertyChanged();
+            }
         }
 
         public string Username

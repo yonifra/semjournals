@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using SEMJournals.Common.Interfaces;
+using SEMJournals.Common.Models;
 
 namespace SEMJournals.Server
 {
@@ -13,7 +14,7 @@ namespace SEMJournals.Server
         IJournal GetJournalById(int documentId);
 
         [OperationContract]
-        List<IJournal> GetJournalsByUserId(int userId);
+        List<IJournal> GetJournalsByUserId(string username);
 
         [OperationContract]
         List<IJournal> GetAllJournals();
@@ -22,7 +23,16 @@ namespace SEMJournals.Server
         void SaveJournal(IJournal journal);
 
         [OperationContract]
-        void DeleteJournal(int journalId, int userId);
+        void DeleteJournal(int journalId, string username);
+
+        [OperationContract]
+        void AddUser(string username, UserType type);
+
+        [OperationContract]
+        void RemoveUser(string username);
+
+        [OperationContract]
+        User GetUserByUsername(string username);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

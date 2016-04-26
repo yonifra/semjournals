@@ -9,17 +9,19 @@ namespace SEMJournals.Common.Models
         // Maps usernames to their passwords for authentication
         private static Dictionary<string, string> _users = new Dictionary<string, string>();
         private static AuthenticationManager _instance;
+        private const string FilePath = @"C:\users.json";
 
         private AuthenticationManager()
         {
-            string json;
-
-            using (var reader = new StreamReader(@"C:\users.json"))
+            using (var reader = new StreamReader(FilePath))
             {
-                json = reader.ReadToEnd();
-            }
+                var json = reader.ReadToEnd();
 
-            _users = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                if (!string.IsNullOrEmpty(json))
+                {
+                    _users = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                }
+            }
         }
 
         public static AuthenticationManager Instance
@@ -36,6 +38,7 @@ namespace SEMJournals.Common.Models
             {
                 if (_users[username] == password)
                 {
+                    CurrentUser = username;
                     return true;
                 }
             }
@@ -43,7 +46,7 @@ namespace SEMJournals.Common.Models
             return false;
         }
 
-        public void Save(string filename = @"C:\users.json")
+        public void Save(string filename = FilePath)
         {
             var json = JsonConvert.SerializeObject(_users);
 
@@ -52,6 +55,8 @@ namespace SEMJournals.Common.Models
                 writer.Write(json);
             }
         }
+
+        public string CurrentUser { get; private set; }
 
         public bool AddUser(string username, string password)
         {

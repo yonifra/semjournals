@@ -19,9 +19,9 @@ namespace SEMJournals.Server
             return JournalManager.GetJournal(documentId);
         }
 
-        public List<IJournal> GetJournalsByUserId(int userId)
+        public List<IJournal> GetJournalsByUserId(string username)
         {
-            return JournalManager.GetJournalsForUser(userId);
+            return JournalManager.GetJournalsForUser(username);
         }
 
         public List<IJournal> GetAllJournals()
@@ -34,9 +34,9 @@ namespace SEMJournals.Server
             JournalManager.PublishJournal(journal);
         }
 
-        public void DeleteJournal(int journalId, int userId)
+        public void DeleteJournal(int journalId, string username)
         {
-            JournalManager.DeleteSpecificJournal(journalId, userId);
+            JournalManager.DeleteSpecificJournal(journalId, username);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
@@ -50,6 +50,21 @@ namespace SEMJournals.Server
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+        public void AddUser(string username, UserType type)
+        {
+            UsersManager.AddUser(username, type);
+        }
+
+        public void RemoveUser(string username)
+        {
+            UsersManager.RemoveUser(username);
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            return UsersManager.GetUserByUsername(username);
         }
     }
 }

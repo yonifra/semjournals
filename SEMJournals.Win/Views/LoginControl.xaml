@@ -14,6 +14,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         
         <TextBlock Text="Username: " Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -24,5 +25,7 @@
         
         <Button Content="Login" Grid.Row="2" Grid.Column="0" Margin="3,10" Command="{Binding LoginCommand}"/>
         <Button Content="Sign up" Grid.Row="2" Grid.Column="1" Margin="3,10" Command="{Binding SignUpCommand}"/>
+        
+        <CheckBox IsChecked="{Binding IsPublisher}" Content="Is publisher?" Grid.Row="3" Grid.RowSpan="2" />
     </Grid>
 </UserControl>

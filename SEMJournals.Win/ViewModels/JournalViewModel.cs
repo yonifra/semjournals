@@ -1,5 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
+using SEMJournals.Common.Models;
 
 namespace SEMJournals.Win.ViewModels
 {
@@ -14,6 +15,15 @@ namespace SEMJournals.Win.ViewModels
         public JournalViewModel(int journalId)
         {
             _journalId = journalId;
+        }
+
+        public JournalViewModel(Journal journal)
+        {
+            Id = journal.Id;
+            DocumentPath = journal.Path;
+            JournalName = journal.Name;
+            Author = journal.Author;
+            CreationTime = journal.PublishTime;
         }
 
         public string DocumentPath
@@ -36,7 +46,7 @@ namespace SEMJournals.Win.ViewModels
             }
         }
 
-        public string AuthorName
+        public string Author
         {
             get { return _authorName; }
             set
@@ -52,6 +62,16 @@ namespace SEMJournals.Win.ViewModels
             set
             {
                 _creationTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int Id
+        {
+            get { return _journalId; }
+            private set
+            {
+                _journalId = value;
                 RaisePropertyChanged();
             }
         }

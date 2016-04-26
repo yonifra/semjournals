@@ -1,23 +1,20 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using SEMJournals.Common.Interfaces;
 
 namespace SEMJournals.Common.Models
 {
     public class Journal : IJournal
     {
-        private string _journalPath;
-        private int _id;
-        private int _authorId;
-        private string _journalName;
-        private DateTime _publishTime;
-
         public Journal()
         {
             PublishTime = DateTime.Now;
         }
 
+        [Key]
         public int Id { get; set; }
-        public int AuthorId { get; set; }
+
+        public string Author { get; set; }
         public string Path { get; set; }
         public string Name { get; set; }
         public DateTime PublishTime { get; private set; }

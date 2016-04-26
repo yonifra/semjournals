@@ -7,19 +7,31 @@
              xmlns:viewModels="clr-namespace:SEMJournals.Win.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.Column="0" ItemsSource="{Binding Journals}" SelectedItem="{Binding SelectedJournal, Mode=OneWayToSource}">
-            <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type viewModels:JournalViewModel}">
-                    <views:JournalItemControl />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" ItemsSource="{Binding Journals}" SelectedItem="{Binding SelectedJournal, Mode=OneWayToSource}" HorizontalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type viewModels:JournalViewModel}">
+                        <views:JournalItemControl />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <Button Content="Show my journals" Margin="5" Command="{Binding ShowMyJournalsCommand}" />
+                <Button Content="Show all journals" Margin="5" Command="{Binding ShowAllCommand}" />
+                <Button Content="Upload a new journal" Margin="5" Command="{Binding UploadCommand}" />
+            </StackPanel>
+        </Grid>
 
         <views:SemViewerControl Grid.Column="1" Journal="{Binding SelectedJournal, Mode=OneWay}" />
     </Grid>

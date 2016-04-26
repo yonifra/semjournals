@@ -11,6 +11,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SEMJournals.WebClient", "ht
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{5a351af6-a704-4f53-98af-3acda5b2d179}|SEMJournals.Server.dll;{16D2A25C-561B-42C9-ADEC-9668EDDA7100}|SEMJournals.Common.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_55263"
 		Debug.AspNetCompiler.PhysicalPath = "..\..\WebSites\SEMJournals.WebClient\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55263\"
