@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 using SEMJournals.Common.Interfaces;
 
 namespace SEMJournals.Server
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IDataService" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface IDataService
     {
         [OperationContract]
         IJournal GetJournalById(int documentId);
@@ -21,6 +17,12 @@ namespace SEMJournals.Server
 
         [OperationContract]
         List<IJournal> GetAllJournals();
+
+        [OperationContract]
+        void SaveJournal(IJournal journal);
+
+        [OperationContract]
+        void DeleteJournal(int journalId, int userId);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

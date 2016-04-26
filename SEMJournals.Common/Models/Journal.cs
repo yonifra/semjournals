@@ -11,24 +11,15 @@ namespace SEMJournals.Common.Models
         private string _journalName;
         private DateTime _publishTime;
 
-        public string GetJournalPath()
+        public Journal()
         {
-            return _journalPath;
+            PublishTime = DateTime.Now;
         }
 
-        public int GetJournalId()
-        {
-            return _id;
-        }
-
-        public int GetAuthorId()
-        {
-            return _authorId;
-        }
-
-        public string GetJournalName()
-        {
-            return _journalName;
-        }
+        public int Id { get; set; }
+        public int AuthorId { get; set; }
+        public string Path { get; set; }
+        public string Name { get; set; }
+        public DateTime PublishTime { get; private set; }
     }
 }

@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" IsSharedSizeScope="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition SharedSizeGroup="A" />
+            <ColumnDefinition SharedSizeGroup="A"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -16,12 +16,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         
-        <TextBlock Text="Username: " Grid.Row="0" Grid.Column="0" />
-        <TextBlock Text="Password: " Grid.Row="1" Grid.Column="0" />
+        <TextBlock Text="Username: " Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Text="Password: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
         <TextBox Text="{Binding Username}" Grid.Row="0" Grid.Column="1" Width="100" Margin="0,5"/>
         <TextBox Text="{Binding Password}" Grid.Row="1" Grid.Column="1" Width="100" Margin="0,5" />
         
-        <Button Content="Login" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10" Command="{Binding LoginCommand}"/>
+        <Button Content="Login" Grid.Row="2" Grid.Column="0" Margin="3,10" Command="{Binding LoginCommand}"/>
+        <Button Content="Sign up" Grid.Row="2" Grid.Column="1" Margin="3,10" Command="{Binding SignUpCommand}"/>
     </Grid>
 </UserControl>

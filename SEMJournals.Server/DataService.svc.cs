@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 using SEMJournals.Common.Interfaces;
+using SEMJournals.Common.Models;
 
 namespace SEMJournals.Server
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class Service1 : IService1
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DataService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select DataService.svc or DataService.svc.cs at the Solution Explorer and start debugging.
+    public class DataService : IDataService
     {
         public string GetData(int value)
         {
@@ -20,17 +16,27 @@ namespace SEMJournals.Server
 
         public IJournal GetJournalById(int documentId)
         {
-            throw new NotImplementedException();
+            return JournalManager.GetJournal(documentId);
         }
 
         public List<IJournal> GetJournalsByUserId(int userId)
         {
-            throw new NotImplementedException();
+            return JournalManager.GetJournalsForUser(userId);
         }
 
         public List<IJournal> GetAllJournals()
         {
-            throw new NotImplementedException();
+            return JournalManager.GetAllJournals();
+        }
+
+        public void SaveJournal(IJournal journal)
+        {
+            JournalManager.PublishJournal(journal);
+        }
+
+        public void DeleteJournal(int journalId, int userId)
+        {
+            JournalManager.DeleteSpecificJournal(journalId, userId);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)

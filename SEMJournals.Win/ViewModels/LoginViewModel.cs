@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using SEMJournals.Common.Models;
 
 namespace SEMJournals.Win.ViewModels
 {
@@ -10,6 +11,7 @@ namespace SEMJournals.Win.ViewModels
         private string _password;
         private RelayCommand _loginCommand;
         private readonly MainViewModel _mainVm;
+        private RelayCommand _signUpCommand;
 
         public LoginViewModel(MainViewModel mainVm)
         {
@@ -36,6 +38,18 @@ namespace SEMJournals.Win.ViewModels
             get { return _loginCommand ?? (_loginCommand = new RelayCommand(Login)); }
         }
 
+        public RelayCommand SignUpCommand
+        {
+            get { return _signUpCommand ?? (_signUpCommand = new RelayCommand(SignUp)); }
+        }
+
+        private void SignUp()
+        {
+            var result = AuthenticationManager.Instance.AddUser(Username, Password);
+
+            MessageBox.Show(result ? "Signed up!" : "Error signing up");
+        }
+
         public string Username
         {
             get { return _username; }
@@ -58,8 +72,7 @@ namespace SEMJournals.Win.ViewModels
 
         private bool Authenticate()
         {
-            return true;
-            //TODO: Authenticate the user, return true if authenticated or false otherwise
+            return AuthenticationManager.Instance.Authenticate(Username, Password);
         }
     }
 }
